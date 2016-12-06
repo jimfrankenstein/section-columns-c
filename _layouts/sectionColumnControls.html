@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+    {% include head.html %}
+    <link rel="stylesheet" href="{{ "/css/sectionColumnControls.css" | prepend: site.baseurl }}">
+  </head>
+
+  <body>
+
+    {% include header.html %}
+
+    {{ content }}
+
+    {% include footer.html %}
+    <script src="/js/main.js"></script>
+    <script src="/js/section-column-controls.js"></script>
+    {% include javascript.html %}
+
+  </body>
+
+</html>

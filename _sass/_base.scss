@@ -1,0 +1,157 @@
+.fg:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.fl {
+  display: flex;
+}
+
+.fauxSubaccounts {
+  background: $navy;
+  width: 100vw;
+  height: 35px;
+}
+.fauxNavigation {
+  background: $weird-brown;
+  width: 100vw;
+  height: 97px;
+}
+
+.home {
+  width: 100vw;
+  height: 100%;
+  padding: 2rem 0;
+  margin: 0 auto;
+  max-width: 1140px;
+  position: relative;
+}
+
+// buttons
+// 
+
+.textLink {
+  color: $primary-light;
+  cursor: pointer;
+  position: relative;
+  margin-bottom: 12px;
+  transition: all 250ms;
+
+  &:after {
+    content: '';
+    display: block;
+    width: auto;
+    height: 1px;
+    background: $lp-blue;
+    transition: all 250ms;
+  }
+  &:hover {
+    color: $navy;
+    transform: translateY(-2px);
+    &:after {
+      transform: translateY(2px);
+    }
+  }
+}
+
+.button {
+  background: none;
+  display: block;
+  box-sizing: border-box;
+  min-width: 110px;
+  height: 3rem;
+  font: 1.16rem/3rem 'Roboto';
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  border-radius: 1.5rem;
+  padding: 0 2rem;
+  transition: all 250ms;
+  outline: none;
+  position: relative;
+}
+
+.button--icon--left {
+  padding-right: 3rem;
+  i {
+    display: inline-block;
+    float: left;
+    margin-right: .5rem;
+
+    @include lpLigatures;
+    font: 1.6rem/2.8rem 'LeadPages-Icons';
+  }
+}
+
+.button--icon--center {
+  i {
+    display: inline-block;
+    // float: left;
+    // margin-right: .5rem;
+
+    @include lpLigatures;
+    font: 1.6rem/2.8rem 'LeadPages-Icons';
+  }
+}
+
+.button--icon--right {
+  padding-left: 3rem;
+  i {
+    display: inline-block;
+    float: right;
+    margin-left: 1rem;
+
+    @include lpLigatures;
+    font: 1.6rem/2.8rem 'LeadPages-Icons';
+  }
+}
+
+.button--text {
+  color: $primary-light;
+  padding: 0;
+  &:hover {
+    color: $lp-blue;
+  }
+}
+
+.button--static {
+  color: $lp-blue;
+  padding: 0;
+}
+
+.button--tertiary {
+  color: $primary-light;
+  border: 1px solid $primary-light;
+  min-width: 3rem;
+  padding: 0;
+
+  &.button--dithered {
+    color: rgba($primary-light,.4);
+    border: 1px solid rgba($primary-light,.4);
+  }
+
+  &:hover {
+    color: $lp-blue;
+    border: 1px solid $lp-blue;
+  }
+}
+
+.button--secondary {
+  color: $lp-blue;
+  border: 1px solid $lp-blue;
+
+  &:hover {
+    color: #fff;
+    background: $lp-blue;
+  }
+}
+
+.button--primary {
+  color: #fff;
+  background: $lp-blue;
+
+  &:hover {
+    background: $lp-blue-hover;
+  }
+}

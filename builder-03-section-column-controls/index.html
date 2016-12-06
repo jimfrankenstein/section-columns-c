@@ -1,0 +1,52 @@
+---
+layout: sectionColumnControls
+---
+
+<section class="builderScreen thelpModal-open">
+
+  {% include helpModal.html %}
+
+<!-- <section class="builderScreen     pageStylesPane-isOpen"> -->
+  <div class="builderSidebar">
+    <div class="builderSidebar__toggle builderSidebar__toggle--allOff" data-pane="menuIcon"><i>menu</i></div>
+    <div class="builderSidebar__toggle builderSidebar__toggle--widgets" data-pane="widgets"><i>widgets</i></div>
+    <div class="builderSidebar__toggle builderSidebar__toggle--pageStyles" data-pane="pageStyles"><i>layers</i></div>
+    <div class="builderSidebar__toggle builderSidebar__toggle--seo" data-pane="seo"><i>analytics</i></div>
+  </div>
+  <div class="builderPanes">
+    <div class="builderPane builderPane__widgetsPane">
+      <div class="paneSection paneSection__root">
+        <h1>Widgets</h1>
+      </div>
+    </div>
+    <div class="builderPane builderPane__pageStylesPane">
+    <!-- <div class="builderPane builderPane__pageStylesPane    settings-isOpen settings-isOpen--section"> -->
+      {% include pageStylesPane.html %}
+    </div>
+    <div class="builderPane builderPane__seoPane">
+      <div class="paneSection paneSection__root">
+        <h1>Conversion &amp; Analytics Tools</h1>
+      </div>
+    </div>
+  </div>
+  <div class="builderMain">
+    <div class="builderHeader fg">
+      <h1>Increase Profit with SEO</h1>
+      <button class="button button--primary publishButton">Publish</button>
+      <button class="button button--tertiary helpButton">?</button>
+    </div>
+    <div
+      class="builderBody"
+      data-name="test"
+      data-bgcolor="null"
+      data-bgimage="null"
+      data-bgwidth="medium"
+    >
+      {% include fakeBuilderPage.html %}
+    </div>
+  </div>
+</section>
+
+<script type="text/javascript">
+  window.leadscripts.push('sectionColumnControls');
+</script>

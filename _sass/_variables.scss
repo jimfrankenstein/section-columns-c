@@ -1,0 +1,58 @@
+// colors
+// 
+
+$lp-blue: #0069FF;
+
+$lp-blue-hover: #0055CC;
+
+$lp-red: #FA3246;
+
+$lp-red-hover: #C72838;
+
+$half-blue: #BCDFFF;
+
+$default-gray: #C0C2C4;
+
+$weird-brown: #F2F4F7;
+
+$navy: #020020;
+
+$primary-light: #4C515D;
+
+$secondary-light: #797F89;
+
+$primary-dark: #B1BACC;
+
+$primary-dark-dim: rgba($primary-dark,.4);
+
+// shadows
+// 
+
+@mixin plane-1 {
+  box-shadow: 0px 1px 3px rgba(0,0,0,.32);
+}
+@mixin plane-2 {
+  box-shadow: 0px 4px 6px rgba(0,0,0,.26);
+}
+@mixin plane-3 {
+  box-shadow: 0px 8px 12px rgba(0,0,0,.23);
+}
+@mixin plane-4 {
+  box-shadow: 0px 12px 18px rgba(0,0,0,.20);
+}
+@mixin plane-5 {
+  box-shadow: 0px 14px 24px rgba(0,0,0,.18);
+}
+
+// mixins
+// 
+
+// @mixin disable {
+  
+// }
+
+// sizes
+// 
+
+// breakpoints
+// 

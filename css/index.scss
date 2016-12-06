@@ -1,0 +1,16 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+@charset "utf-8";
+
+$image_path: '/images';
+
+// reset and libraries
+// 
+@import "variables";
+@import "reset";
+@import "fonts";
+@import "iconFont";
+@import "grid";
+@import "base";
+@import "index";

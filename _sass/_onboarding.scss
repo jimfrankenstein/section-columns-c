@@ -1,0 +1,463 @@
+.onboardingTitle {
+  @include column-span(8);
+  margin: 0 auto;
+
+  h1 {
+    color: $primary-light;
+    font: 700 1.85rem/3rem 'Roboto';
+    font: 300 2.16rem/3rem 'Roboto';
+    text-align: center;
+    display: block;
+    min-height: 6rem;
+  }
+  h2 {
+    color: $primary-light;
+    font: 300 1.16rem/2rem 'Roboto';
+    text-align: center;
+    display: block;
+    min-height: 4rem;
+    display: none;
+  }
+}
+
+.onboardingBody {
+  width: 100%;
+  position: relative;
+  margin: 2rem auto 4rem;
+}
+
+// triggers
+// 
+
+.triggerWrapper {
+  width: 100%;
+  margin: 2rem auto 0;
+  display: flex;
+  flex-wrap: wrap;
+  transition: all 500ms;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.trigger__text {
+  text-align: center;
+  display: block;
+  flex-grow: 1;
+  margin-top: 2.5rem;
+
+  span {
+    width: auto;
+    position: relative;
+    margin: 0 auto;
+    display: inline-block;
+    padding: 0 2px;
+    color: $primary-light;
+    font: 300 1rem/1.5rem 'Roboto';
+
+    &:hover {
+      color: $navy;
+    }
+  }
+}
+
+.trigger__bubble {
+  text-align: center;
+  cursor: pointer;
+
+  @include column-span(2,1);
+  &:first-child { @include column-span(2,2); }
+
+  h3 {
+    color: $primary-light;
+    font: 300 1.16rem/2rem 'Roboto';
+    margin: 1rem auto;
+    transition: color 500ms;
+  }
+
+  .trigger__illustration {
+    border: 1px solid $default-gray;
+    width: 80%;
+    height: 0;
+    padding-bottom: 80%;
+    border-radius: 50%;
+    margin: 0 auto;
+    transition: all 500ms;
+  }
+
+  &:hover {
+    h3 {
+      color: $navy;
+    }
+    .trigger__illustration {
+      transform: scale(1.03) translateY(-3%);
+      @include plane-2;
+    }
+  }
+}
+
+/* hide triggers when questions or path are visible */
+.questionSteps .triggerWrapper,
+.pathSteps .triggerWrapper {
+  // height: 0;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(20vh);
+}
+
+// questions
+// 
+
+/* by default, hide question wrapper */
+.questionAreaWrapper {
+  opacity: 0;
+  // height: 0;
+  width: 100%;
+  margin: 0 auto;
+  pointer-events: none;
+  transform: translateY(20vh);
+  transition: all 500ms;
+  visibility: hidden;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+
+/* delay transitions of question wrapper unless path is present (to avoid unnecessary waiting */
+body:not(.pathSteps) .questionAreaWrapper {
+  transition-delay: 500ms;
+}
+
+/* when questions are present, but not path, show question wrapper */
+.questionSteps:not(.pathSteps) .questionAreaWrapper {
+  display: block;
+  opacity: 1;
+  // height: 31rem;
+  pointer-events: auto;
+  transform: translateY(0);
+  visibility: visible;
+}
+
+.questionnaireWrapper {
+  position: relative;
+  height: 16rem;
+  @include column-span(6,3);
+  margin-top: 1rem;
+}
+
+@keyframes newQuestionSet {
+  from {
+    opacity: 0;
+    transform: translateX(100vw);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.questionSet {
+  // padding-left: 2rem;
+  opacity: 1;
+  transition: all 400ms;
+  position: absolute;
+  left: 0;
+  top: 0;
+  min-height: 16rem;
+
+  span {
+    font: 300 1.33rem/2rem 'Roboto';
+    color: $primary-light;
+    cursor: pointer;
+    display: block;
+    margin-bottom: 2rem;
+    box-sizing: border-box;
+    position: relative;
+    padding-left: 30px;
+
+    &:not(.button__back) {
+
+      &:before {
+        display: inline-block;
+        position: absolute;
+        left: 0;
+        top: 4px;
+        content: '';
+        height: 16px;
+        width: 16px;
+        box-sizing: border-box;
+        background-clip: content-box;
+        border: 2px solid $primary-light;
+        padding: 3px;
+        border-radius: 9px;
+        margin-right: 12px;
+      }
+
+      &:hover {
+        color: $navy;
+
+        &:before {
+          background: $half-blue;
+          background-clip: content-box;
+          border: 2px solid $navy;
+        }
+      }
+    }
+
+    &.button__back {
+      &:hover {
+        color: $navy;
+      }
+    }
+  }
+  &.fadeOut {
+    // height: 0;
+    transform: scale(.8);
+    opacity: 0;
+    pointer-events: none;
+  }
+  &.slideOut {
+    // height: 0;
+    opacity: 0;
+    transform: translateX(100vw);
+  }
+  &:not(:first-child) {
+    animation: newQuestionSet 400ms;
+  }
+}
+
+// path
+// 
+
+/* by default, hide path wrapper */
+.pathWrapper {
+  opacity: 0;
+  width: 100%;
+  margin: 0 auto;
+  padding-bottom: 4rem;
+  pointer-events: none;
+  transform: translateY(20vh);
+  transition: all 500ms;
+  visibility: hidden;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3;
+}
+
+/* show path wrapper with body class */
+.pathSteps .pathWrapper {
+  display: block;
+  opacity: 1;
+  height: auto;
+  pointer-events: auto;
+  // transform: translateY(-6rem);
+  transform: translateY(0);
+  visibility: visible;
+  transition-delay: 500ms;
+}
+
+/* hide inner area of path when not in path step */
+body:not(.pathSteps) .pathInnerWrapper {
+  display: none;
+}
+
+.pathInnerWrapper {
+  text-align: center;
+  // @include column-span(8,2);
+  width: 100%;
+}
+
+.pathInfo {
+  float: left;
+  @include column-span(4,1);
+  margin-top: 2rem;
+  
+  .startOver {
+    margin: 3rem auto 0;
+  }
+}
+.pathIllustration {
+  border: 1px solid $default-gray;
+  margin: 0 auto 2rem;
+  border-radius: 50%;
+  width: 46%;
+  height: 0;
+  padding-bottom: 46%;
+  margin-bottom: 2rem;
+}
+
+.pathName {
+  color: $primary-light;
+  font: 300 1.85rem/3rem 'Roboto';
+  text-align: center;
+  margin-bottom: 1.5rem;
+  display: block;
+}
+.pathAbout {
+  color: $primary-light;
+  font: 300 1.16rem/2rem 'Roboto';
+  text-align: center;
+  display: block;
+  width: 60%;
+  margin: 0 auto;
+}
+
+.pathChecklist {
+  width: 100%;
+  max-width: 700px;
+  margin: 2rem auto;
+  text-align: left;
+  float: left;
+  @include column-span(4,1);
+
+  .item {
+    box-sizing: border-box;
+    height: 5rem;
+    width: 100%;
+    border-bottom: 1px solid $primary-dark;
+
+    // &:last-child { border-bottom: 1px solid $primary-dark; }
+
+
+    .item__symbol {
+      font: 1.5rem/4.9rem 'LeadPages-Icons';
+      float: left;
+      margin-right: .5rem;
+    }
+
+    .item__text {
+      font: bold 1.16rem/5rem 'Roboto';
+      position: relative;
+      float: left;
+    }
+
+    .item__action {
+      float: right;
+      margin: 1rem 0 0 1rem;
+      width: 120px;
+
+      .button--text {
+        color: $secondary-light;
+        &:hover {
+          color: $lp-blue;
+        }
+      }
+    }
+    .button--static {
+      min-width: 0;
+      float: right;
+    }
+    .button--tertiary {
+      float: right;
+      margin-right: 1rem;
+    }
+
+    &.completed .item__text {
+      color: rgba($primary-light, 0.4);
+    }
+  }
+
+  .item:not(.completed) .item__symbol:before {
+    color: rgba($primary-light,.9);
+    content: "radio_button_unchecked";
+  }
+  .item.completed .item__symbol:before {
+    color: $lp-blue;
+    content: "check_circle";
+  }
+
+  .startPath {
+    margin: 3rem auto 0;
+  }
+}
+
+// buttons
+// 
+
+.buttonWrapper {
+  box-sizing: border-box;
+  padding: 1rem 0;
+  height: 5rem;
+  position: relative;
+  // @include column-span(8,2);
+  @include column-span(6,3);
+}
+
+.buttonInnerWrapper {
+  // margin: 0 auto;
+  // max-width: 700px;
+
+  .button__back {
+    float: left;
+    margin-right: 1rem;
+  }
+
+  .button__skip {
+    float: right;
+    margin-right: 1rem;
+    display: none;
+  }
+
+  .button__next {
+    float: right;
+  }
+}
+
+// body:not(.questionSteps) .buttonWrapper {
+//   // display: none;
+// }
+// .pathSteps {
+//   // .onboardingTitle h2 { display: none; }
+//   .button__skip,
+//   .button_next {
+//     // display: none;
+//   }
+// }
+
+
+
+// .testPath {
+//   &:after {
+//     content: "";
+//     display: table;
+//     clear: both;
+//   }
+//   .testPathWrapper {
+//     float: left;
+//     @include column-span(4,1);
+//   }
+//   .pathInfo {
+//     // @include column-span(2,2);
+//     // margin-bottom: 2rem;
+//   }
+//   .startPath {
+//     // @include column-span(2,2);
+//   }
+//   .pathChecklist {
+//     float: left;
+//     @include column-span(4,1);
+//   }
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

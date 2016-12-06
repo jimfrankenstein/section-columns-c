@@ -1,0 +1,31 @@
+// 12-column grid, gutters on each side
+// ($gutter-width * 24) + ($column-width * 12) ~= 1
+
+$gutter-width: .008;
+$column-width: .06733;
+
+// calculate column width + gutter width 
+// for given number of columns
+
+@function calc-column-width($column-num: 1) {
+  @return ($column-num * $column-width) + ((($column-num - 1) * 2) * $gutter-width);
+}
+
+// set a section to a given width of columns + gutters, add left spacing
+
+@mixin column-span($column-num: 1, $margin-left-span: 0) {
+  @if $margin-left-span > 0 {
+    margin-left: percentage( calc-column-width($margin-left-span) + ($gutter-width * 3) );
+  } @else {
+    margin-left: percentage($gutter-width);
+  }
+  margin-right: percentage($gutter-width);
+  width: percentage( calc-column-width($column-num) );
+}
+
+// settings for post css columns
+
+@mixin post-columns($column-num: 2) {
+  columns: auto $column-num;
+  column-gap: 2rem;
+}
